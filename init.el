@@ -1,42 +1,10 @@
-(when (>= emacs-major-version 24)
-	(require 'package)
-	; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-	(add-to-list 'package-archives '("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/") t)
-	)
-(require 'cl)
+(package-initialize)
 
-;; add whatever packages you want here
-(defvar stone/packages '(
-			 company
-			 monokai-theme
-			 hungry-delete
-			 swiper
-			 counsel
-			 smartparens
-			 js2-mode
-			 nodejs-repl
-			 exec-path-from-shell
-			 ) "Default packages")
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
-(defun stone/packages-installed-p ()
-	(loop for pkg in stone/packages
-				when (not (package-installed-p pkg)) do (return nil)
-				finally (return t)))
-
-(unless (stone/packages-installed-p)
-	(message "%s" "Refreshing package database...")
-	(package-refresh-contents)
-	(dolist (pkg stone/packages)
-		(when (not (package-installed-p pkg))
-			(package-install pkg))))
-
-(require 'hungry-delete)
-(global-hungry-delete-mode)
+(require 'init-packages)
 
 ;; config for swiper
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
 (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
@@ -45,25 +13,23 @@
 (global-set-key (kbd "C-h f") 'counsel-describe-function)
 (global-set-key (kbd "C-h v") 'counsel-describe-variable)
 
-;; config for smartparens
-(require 'smartparens-config)
-;; (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
-(smartparens-global-mode t)
-
-;; config for js2-mode
-(setq auto-mode-alist
-      (append
-       '(("\\.js\\'" . js2-mode))
-       auto-mode-alist))
-
-;; config for exec-path-from-shell
-(when (memq window-system '(mac ns))
-	(exec-path-from-shell-initialize))
 
 ;; 跳转查询内容所在文件
 (global-set-key (kbd "C-h C-f") 'find-function)
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
+
+(global-auto-revert-mode t)
+
+;; 缩写
+(abbrev-mode t)
+(define-abbrev-table 'global-abbrev-table '(
+					    ;; entry 触发
+					    ("8se" "Stone")
+					    ))
+
+;; 警告声音
+(setq ring-bell-function 'ignore)
 
 ;; tool-bar
 (tool-bar-mode -1)
@@ -79,6 +45,8 @@
 
 ;; 备份文件
 (setq make-backup-files nil)
+;; 自动保存
+(setq auto-save-default nil)
 
 ;; 文件记录
 (require 'recentf)
@@ -111,10 +79,6 @@
 
 (global-set-key (kbd "<f2>") 'open-my-init-file)
 
-;; company-mode
-(global-company-mode t)
-
-(load-theme 'monokai t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -123,8 +87,7 @@
  ;; If there is more than one, they won't work right.
  '(company-idle-delay 0.08)
  '(company-minimum-prefix-length 1)
- '(package-selected-packages
-   '(company monokai-theme hungry-delete swiper counsel smartparens js2-mode nodejs-repl exec-path-from-shell)))
+)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
