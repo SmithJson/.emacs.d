@@ -33,7 +33,6 @@
 			(package-install pkg))))
 
 ;; hungry-delete
-(require 'hungry-delete)
 (global-hungry-delete-mode)
 
 ;; swiper
@@ -42,7 +41,6 @@
 (setq enable-recursive-minibuffers t)
 
 ;; smartparens
-(require 'smartparens-config)
 (smartparens-global-mode t)
 
 ;; js2-mode
