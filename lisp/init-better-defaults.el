@@ -46,6 +46,32 @@
 	(indent-buffer)
 	(message "Indented buffer.")))))
 
+;; 增强 hippie 提示
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev
+					 try-expand-dabbrev-all-buffers
+					 try-expand-dabbrev-from-kill
+					 try-complete-file-name-partially
+					 try-complete-file-name
+					 try-expand-all-abbrevs
+					 try-expand-list
+					 try-expand-line
+					 try-complete-lisp-symbol-partially
+					 try-complete-lisp-symbol
+					 ))
+
+;; 交互问答中的回答使用缩写
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; 递归删除
+(setq dired-recursive-deletes 'always)
+(setq dired-recursive-copies 'always)
+
+;; 复用 buffer
+(put 'dired-find-alternate-file 'disabled nil)
+(require 'dired-x)
+
+(setq dired-dwim-target t)
+
 ;; 自动缩紧
 ;; (electric-indent-mode -1)
 
