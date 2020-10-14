@@ -1,0 +1,41 @@
+** 工具菜单
+
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode -1)
+#+END_SRC
+
+** 滚动条
+
+#+BEGIN_SRC emacs-lisp
+(scroll-bar-mode -1)
+#+END_SRC
+
+** 高亮当前行
+
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode t)
+#+END_SRC
+
+** 欢迎界面
+
+#+BEGIN_SRC emacs-lisp
+;; (setq inhibit-splash-screen t)
+#+END_SRC
+
+** 光标样式
+
+#+BEGIN_SRC emacs-lisp
+;; (setq-default cursor-type 'bar')
+#+END_SRC
+
+** 全屏
+
+#+BEGIN_SRC emacs-lisp
+;; (setq initial-frame-alist (quote ((fullscreen . maximized))))
+#+END_SRC
+
+** 导出 Features
+
+#+BEGIN_SRC emacs-lisp
+(provide 'init-ui)
+#+END_SRC

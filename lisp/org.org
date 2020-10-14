@@ -1,0 +1,16 @@
+** 高亮 org-mode 配置
+
+#+BEGIN_SRC emacs-lisp
+(require 'org)
+(setq org-src-fontify-natively t)
+#+END_SRC
+
+** 设置任务文件目录
+
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-files '("~/org"))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'init-org)
+#+END_SRC

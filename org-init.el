@@ -1,28 +1,13 @@
-** packages 初始化
-
-#+BEGIN_SRC emacs-lisp
 (package-initialize)
-#+END_SRC
 
-** 配置 load path
-
-#+BEGIN_SRC emacs-lisp
 (setq lisp-path "~/.emacs.d/lisp/")
 
 (add-to-list 'load-path lisp-path)
-#+END_SRC
 
-** 快速打开配置函数
-
-#+BEGIN_SRC emacs-lisp
 (defun open-my-init-file()
   (interactive)
   (find-file "~/.emacs.d/init.el"))
-#+END_SRC
 
-** Features 导入
-
-#+BEGIN_SRC emacs-lisp
 (require 'init-packages)
 (require 'init-ui)
 (require 'init-better-defaults)
@@ -31,4 +16,3 @@
 
 (setq custom-file (expand-file-name "lisp/custom.el" user-emacs-directory))
 (load-file custom-file)
-#+END_SRC
