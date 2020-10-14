@@ -29,6 +29,23 @@
 ;; 替换选中文本
 (delete-selection-mode t)
 
+;; buffer 缩紧格式化
+(defun indent-buffer ()
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+;; buffer 缩紧格式化
+(defun indent-region-or-buffer ()
+  (interactive)
+  (save-excursion
+    (if (region-active-p)
+	(progn
+	  (indent-region (region-beginning) (region-end))
+	  (message "Indented selected region."))
+      (progn
+	(indent-buffer)
+	(message "Indented buffer.")))))
+
 ;; 自动缩紧
 ;; (electric-indent-mode -1)
 

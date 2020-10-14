@@ -19,4 +19,7 @@
 ;; 快速打开 init.el
 (global-set-key (kbd "<f2>") 'open-my-init-file)
 
+;; 格式化缩紧
+(global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
+
 (provide 'init-keybingings)
